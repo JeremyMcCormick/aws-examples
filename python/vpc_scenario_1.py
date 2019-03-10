@@ -11,8 +11,6 @@ https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario1.html
 import boto3
 from botocore.exceptions import ClientError
 
-import os
-
 # https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/ec2.html#client
 client = boto3.client('ec2', region_name = 'ap-southeast-1')
 
@@ -95,6 +93,7 @@ try:
     key_pair = client.create_key_pair(KeyName='MyKeyPair')
     key_pair_out = str(key_pair['KeyMaterial'])
     outfile.write(key_pair_out)
+    outfile.close()
 #    os.chmod(outfile.name, 400)
     
     # Create an EC2 instance associated to the subnet.
